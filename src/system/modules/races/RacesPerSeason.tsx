@@ -78,7 +78,7 @@ function RacesPerSeason() {
                 <TableRow hover key={index}>
                   <TableCell
                     onClick={() => {
-                      navigate(`/${season.season}/races`);
+                      navigate(`/${season.season}/${season.round}/results`);
                     }}
                   >
                     {season.season}
