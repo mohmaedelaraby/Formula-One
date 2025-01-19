@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Styles.css";
+import { useNavigate, useParams } from "react-router-dom";
+import useRacePerSeason from "./hooks/UseRacePerReason";
 import {
   Table,
   TableBody,
@@ -12,19 +14,16 @@ import {
   CircularProgress,
   Typography,
 } from "@mui/material";
+import { Races } from "../../types/Types";
 
-import useSeasons from "./hooks/useSeasons";
-import { Season } from "../../types/Types";
-import { useNavigate } from "react-router-dom";
+function RacesPerSeason() {
+  const { season } = useParams();
 
-function Seasons() {
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(10);
   const navigate = useNavigate();
-  const { SeasonData, totalCount, isLoading, isError, refetch } = useSeasons(
-    rowsPerPage,
-    page * rowsPerPage
-  );
+  const { RaceData, totalCount, isLoading, isError, refetch } =
+    useRacePerSeason(rowsPerPage, page * rowsPerPage, season);
 
   useEffect(() => {
     refetch();
@@ -71,11 +70,11 @@ function Seasons() {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Season</TableCell>
+                <TableCell>Race Per Season : {season}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {SeasonData.map((season: Season, index: number) => (
+              {RaceData.map((season: Races, index: number) => (
                 <TableRow hover key={index}>
                   <TableCell
                     onClick={() => {
@@ -87,7 +86,7 @@ function Seasons() {
                 </TableRow>
               ))}
               {/* <div>
-                {SeasonData.map((season: Season, index: number) => (
+                {RaceData.map((season: Season, index: number) => (
                   <div className="test" style={{width:'200px'}} key={index}>
                     {season.season}
                   </div>
@@ -110,4 +109,4 @@ function Seasons() {
   );
 }
 
-export default Seasons;
+export default RacesPerSeason;
