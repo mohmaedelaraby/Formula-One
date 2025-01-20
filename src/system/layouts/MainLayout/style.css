@@ -1,0 +1,17 @@
+.mainLayout {
+  min-height: 100vh;
+  max-width: 100vw;
+  padding: 0px;
+  margin: 0px;
+  font-family: "Bruno Ace", serif;
+  overflow-x: hidden;
+  display: flex;
+  flex-flow: column;
+
+}
+p {
+  margin: 0px;
+}
+body {
+  margin: 0;
+}

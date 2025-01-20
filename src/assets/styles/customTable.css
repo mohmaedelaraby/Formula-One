@@ -1,0 +1,68 @@
+/* //table section// */
+.custom-table-container {
+    width: 90% !important;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fafafa;
+  }
+  .custom-table-click{
+      cursor: pointer;
+  }
+  .table_link {
+    color: #15151e;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .custom-table th {
+    padding: 12px 15px;
+    text-align: left;
+    font-family: "Bruno Ace", serif;
+    border-bottom: 1px solid #ddd;
+  }
+  .custom-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-family: "Racing Sans One", serif;
+  }
+  
+  .custom-table th {
+    background-color: #15151e;
+    color: white;
+  }
+  
+  .custom-table tbody tr:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .custom-table .pinned-row {
+    background-color: #ffeb3b; /* Highlight pinned rows */
+  }
+  
+  .custom-pagination {
+    display: flex;
+    justify-content: center;
+    background-color: #e10600 !important;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  .custom-pagination .MuiTablePagination-selectLabel,
+  .MuiTablePagination-select,
+  .MuiSelect-icon,
+  .MuiTablePagination-displayedRows,
+  .MuiIconButton-root {
+    font-family: "Bruno Ace", serif !important;
+    color: white !important;
+    font-weight: 600 !important;
+  }
+  
+  .custom-pagination .MuiPaginationItem-root {
+    color: white !important;
+  }

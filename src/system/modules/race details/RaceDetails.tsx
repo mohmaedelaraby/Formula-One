@@ -10,11 +10,11 @@ import {
   TableRow,
   TablePagination,
   Paper,
-  CircularProgress,
   Typography,
 } from "@mui/material";
-import {Result } from "../../types/Types";
+import { Result } from "../../types/Types";
 import useRaceResult from "./hooks/useRaceDetails";
+import LoadingPage from "../../shared/loadingState/LoadingPage";
 
 function RaceDetails() {
   const { season, round } = useParams();
@@ -45,11 +45,7 @@ function RaceDetails() {
   };
 
   if (isLoading) {
-    return (
-      <Paper sx={{ padding: 2 }}>
-        <CircularProgress />
-      </Paper>
-    );
+    return <LoadingPage />;
   }
 
   if (isError) {
@@ -64,42 +60,46 @@ function RaceDetails() {
 
   return (
     <>
-      <Paper sx={{ width: "100%", overflow: "hidden" }}>
-        <TableContainer>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Race Result : {season} {round}</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {RaceDetailsData[0]?.Results?.map(
-                (season: Result, index: number) => (
-                  <TableRow hover key={index}>
-                    <TableCell>{season?.Driver?.givenName}</TableCell>
-                  </TableRow>
-                )
-              )}
-              {/* <div>
-                {RaceData.map((season: Season, index: number) => (
-                  <div className="test" style={{width:'200px'}} key={index}>
-                    {season.season}
-                  </div>
-                ))}
-              </div> */}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 50]}
-          component="div"
-          count={totalCount} // Use totalCount from the API response
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-      </Paper>
+      {!isLoading && (
+        <Paper sx={{ width: "100%", overflow: "hidden" }}>
+          <TableContainer>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>
+                    Race Result : {season} {round}
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {RaceDetailsData[0]?.Results?.map(
+                  (season: Result, index: number) => (
+                    <TableRow hover key={index}>
+                      <TableCell>{season?.Driver?.givenName}</TableCell>
+                    </TableRow>
+                  )
+                )}
+                {/* <div>
+          {RaceData.map((season: Season, index: number) => (
+            <div className="test" style={{width:'200px'}} key={index}>
+              {season.season}
+            </div>
+          ))}
+        </div> */}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[10, 25, 50]}
+            component="div"
+            count={totalCount} // Use totalCount from the API response
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </Paper>
+      )}
     </>
   );
 }

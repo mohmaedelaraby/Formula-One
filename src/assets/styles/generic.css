@@ -1,0 +1,45 @@
+/*   //generic classes */
+.display_center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.display_center_col {
+  flex-direction: column;
+}
+.switch_view {
+  margin-top: 20px;
+  display: flex;
+  align-content: center;
+  justify-content: flex-end;
+  width: 95%;
+}
+.switch_view_cards {
+  color: #15151e;
+  background-color: white;
+  border: 2px solid white;
+  padding: 6px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  outline: none;
+  margin-right: 12px;
+}
+.switch_view_cards:hover {
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+/* Active effect (when the button is clicked) */
+.active {
+  background-color: #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.gird_view {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+

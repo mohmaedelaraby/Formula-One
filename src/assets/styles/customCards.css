@@ -1,0 +1,41 @@
+/* //cards section// */
+
+.custom-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  .custom-card-container {
+    padding: 0px !important;
+    padding-bottom: 16px !important;
+  }
+  .custom-card-top {
+    background: #15151e;
+    height: 80px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 26px;
+    transition: 0.2s all;
+  }
+  
+  .custom-card-top:hover {
+    font-size: 32px;
+    transition: 0.2s all;
+  }
+  .card_link {
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .custom-card-btn{
+      background-color: #e10600 !important;
+      color: white !important;
+      font-family: "Racing Sans One", serif !important;
+      font-weight: 200 !important;
+  }
+  
