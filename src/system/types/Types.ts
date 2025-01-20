@@ -33,10 +33,43 @@ export interface Races {
       country: string;
     };
   };
+  Results: Result[];
   date: string;
 }
 
 export interface RacesPerSeason {
   season: string;
   races: Races[];
+}
+
+export interface Result {
+  Constructor: {
+    constructorId: string;
+    url: string;
+    name: string;
+    nationality: string;
+  };
+  Driver: {
+    driverId: string;
+    url: string;
+    givenName: string;
+    familyName: string;
+    dateOfBirth: string;
+    nationality: string;
+  };
+  Time: { millis: string; time: string };
+  grid: string;
+  laps: string;
+  number: string;
+  points: string;
+  position: string;
+  positionText: string;
+  status: string;
+}
+
+export interface RaceResultsResponse {
+  RaceTable: {
+    Races: Races[];
+  };
+  total: number;
 }
