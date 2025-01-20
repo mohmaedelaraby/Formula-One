@@ -28,7 +28,6 @@ const useRaceResult = (limit = 10, offset = 0,season = "", round = "") => {
     }
   );
 
-  console.log(data);
   return {
     RaceDetailsData: data?.RaceTable?.Races || [],
     totalCount: data?.total || 0,
