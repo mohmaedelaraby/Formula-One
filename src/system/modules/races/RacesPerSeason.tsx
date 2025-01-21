@@ -85,12 +85,11 @@ function RacesPerSeason() {
                 <TableBody>
                   {view === "table" &&
                     RaceData.map((race: Races, index: number) => (
-                      <TableRow hover key={index}>
+                      <TableRow  onClick={() => {
+                        navigate(`/results/${race?.season}/${race?.round}?name=${encodeURIComponent(race.raceName)}`);
+                      }} hover key={index}>
                         <TableCell
                           className="custom-table-click"
-                          onClick={() => {
-                            navigate(`/results/${race?.season}/${race?.round}`);
-                          }}
                         >
                           {race.raceName}
                         </TableCell>
