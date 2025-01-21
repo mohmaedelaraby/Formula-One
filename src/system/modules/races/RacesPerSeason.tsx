@@ -18,8 +18,8 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import { Races } from "../../types/Types";
 import LoadingPage from "../../shared/loadingState/LoadingPage";
 import { useNavigate, useParams } from "react-router-dom";
-import useGetRacePerSeasons from "./hooks/useGetRacePerSeason";
 import { format } from "date-fns";
+import useRacePerSeasons from "./hooks/useRacePerSeason";
 
 function RacesPerSeason() {
   const { season } = useParams();
@@ -35,7 +35,7 @@ function RacesPerSeason() {
     view,
     rowsPerPage,
     page,
-  } = useGetRacePerSeasons({ season: season! });
+  } = useRacePerSeasons({ season: season! });
 
   if (isLoading || isError) {
     return <LoadingPage />;

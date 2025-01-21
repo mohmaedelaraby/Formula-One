@@ -1,34 +1,50 @@
-import { useQuery, UseQueryResult } from "react-query";
-import { getSeason } from "../services/seasonsApi";
-import { SeasonResponse } from "../../../types/Types";
+import useGetSeasons from "./useGetSeasons";
+import React, { useCallback, useEffect, useState } from "react";
 
+const useSeasons = () => {
+  const [page, setPage] = useState<number>(0);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(9);
+  const { SeasonData, totalCount, isLoading, isError, refetch } = useGetSeasons(
+    rowsPerPage,
+    page * rowsPerPage
+  );
+  const [view, setView] = useState<"table" | "card">("table"); // State to track the current view
 
-const fetchSeasons = async (
-  limit: number,
-  offset: number
-): Promise<SeasonResponse> => {
-  return await getSeason(limit, offset);
-};
+  // Toggle between 'card' and 'table'
+  const toggleView = useCallback((display: "table" | "card") => {
+    setView(display);
+  }, []);
+  useEffect(() => {
+    refetch();
+  }, [page, rowsPerPage, refetch]);
 
-const useSeasons = (limit = 10, offset = 0) => {
-  const { data, isLoading, isError, refetch }: UseQueryResult<SeasonResponse, Error> =
-    useQuery<SeasonResponse, Error>(
-      ["seasons", { limit, offset }],
-      () => fetchSeasons(limit, offset),
-      {
-        refetchOnWindowFocus: false,
-        enabled: false,
-        keepPreviousData: true,
-        staleTime: 5000,
-      }
-    );
+  // Handle page change event
+  const handleChangePage = (
+    event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number
+  ) => {
+    setPage(newPage);
+  };
+
+  // Handle rows per page change event
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
 
   return {
-    SeasonData: data?.SeasonTable?.Seasons || [],
-    totalCount: data?.total || 0,
+    view,
+    handleChangePage,
+    handleChangeRowsPerPage,
+    toggleView,
+    SeasonData,
+    totalCount,
     isLoading,
     isError,
-    refetch,
+    rowsPerPage,
+    page
   };
 };
 

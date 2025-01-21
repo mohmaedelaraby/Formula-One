@@ -1,52 +1,38 @@
-import useRacePerSeason from "./useRacePerSeason";
-import React, { useCallback, useEffect, useState } from "react";
+import { useQuery, UseQueryResult } from "react-query";
+import { SeasonResponse } from "../../../types/Types";
+import { getRacePerSeason } from "../services/RacesPerSeasonApi";
 
-interface Props {
-  season: string;
-}
-const useGetRacePerSeasons = (props: Props) => {
-  const { season } = props;
-  const [page, setPage] = useState<number>(0);
-  const [rowsPerPage, setRowsPerPage] = useState<number>(9);
-  const { RaceData, totalCount, isLoading, isError, refetch } =
-    useRacePerSeason(rowsPerPage, page * rowsPerPage, season);
-  const [view, setView] = useState<"table" | "card">("table"); // State to track the current view
+const fetchRacePerSeason = async (
+  limit: number,
+  offset: number,
+  season: string
+): Promise<SeasonResponse> => {
+  return await getRacePerSeason(limit, offset, season);
+};
 
-  // Toggle between 'card' and 'table'
-  const toggleView = useCallback((display: "table" | "card") => {
-    setView(display);
-  }, []);
-  useEffect(() => {
-    refetch();
-  }, [page, rowsPerPage, refetch]);
-
-  // Handle page change event
-  const handleChangePage = (
-    event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number
-  ) => {
-    setPage(newPage);
-  };
-
-  // Handle rows per page change event
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
-
-  return {
-    view,
-    handleChangePage,
-    handleChangeRowsPerPage,
-    toggleView,
-    RaceData,
-    totalCount,
+const useGetRacePerSeasons = (limit = 10, offset = 0, season = "") => {
+  const {
+    data,
     isLoading,
     isError,
-    rowsPerPage,
-    page,
+    refetch,
+  }: UseQueryResult<SeasonResponse, Error> = useQuery<SeasonResponse, Error>(
+    ["racePerSeasons", { limit, offset, season }],
+    () => fetchRacePerSeason(limit, offset, season),
+    {
+      refetchOnWindowFocus: false,
+      enabled: false,
+      keepPreviousData: true,
+      staleTime: 5000,
+    }
+  );
+
+  return {
+    RaceData: data?.RaceTable?.Races || [],
+    totalCount: data?.total || 0,
+    isLoading,
+    isError,
+    refetch,
   };
 };
 

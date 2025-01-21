@@ -18,7 +18,7 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import { Season } from "../../types/Types";
 import LoadingPage from "../../shared/loadingState/LoadingPage";
 import { useNavigate } from "react-router-dom";
-import useGetSeasons from "./hooks/useGetSeasons";
+import useSeasons from "./hooks/useSeasons";
 
 function Seasons() {
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ function Seasons() {
     view,
     rowsPerPage,
     page,
-  } = useGetSeasons();
+  } = useSeasons();
 
   if (isLoading || isError) {
     return <LoadingPage />;
