@@ -1,13 +1,15 @@
 import { create } from "zustand";
 
-// Zustand store to manage pinned races
-const useStore = create((set) => ({
-  // State for pinned races (we'll use a Set to store race IDs)
+interface StoreState {
+  pinnedRaces: Set<string>;
+  togglePin: (raceId: string) => void;
+}
+
+const usePinStore = create<StoreState>((set) => ({
   pinnedRaces: new Set(JSON.parse(localStorage.getItem("pinnedRaces") || "[]")),
 
-  // Function to pin/unpin a race
-  togglePin: (raceId: any) => {
-    set((state: any) => {
+  togglePin: (raceId: string) => {
+    set((state) => {
       const updatedPinnedRaces = new Set(state.pinnedRaces);
       if (updatedPinnedRaces.has(raceId)) {
         updatedPinnedRaces.delete(raceId);
@@ -26,4 +28,4 @@ const useStore = create((set) => ({
   },
 }));
 
-export default useStore;
+export default usePinStore;

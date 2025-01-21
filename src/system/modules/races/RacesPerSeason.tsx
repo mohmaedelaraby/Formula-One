@@ -20,7 +20,8 @@ import LoadingPage from "../../shared/loadingState/LoadingPage";
 import { useNavigate, useParams } from "react-router-dom";
 import { format } from "date-fns";
 import useRacePerSeasons from "./hooks/useRacePerSeason";
-import useStore from "../../stores/usePinSore";
+import usePinStore from "../../stores/usePinSore";
+import PushPinIcon from "@mui/icons-material/PushPin";
 
 function RacesPerSeason() {
   const { season } = useParams();
@@ -37,7 +38,7 @@ function RacesPerSeason() {
     rowsPerPage,
     page,
   } = useRacePerSeasons({ season: season! });
-  const { pinnedRaces, togglePin } = useStore();
+  const { pinnedRaces, togglePin } = usePinStore();
 
   const sortedRaces = RaceData.sort((a, b) => {
     const aIsPinned = pinnedRaces.has(`${a.season}-${a.round}`);
@@ -93,20 +94,29 @@ function RacesPerSeason() {
                 <TableBody>
                   {view === "table" &&
                     sortedRaces.map((race: Races, index: number) => (
-                      <TableRow  onClick={() => {
-                        navigate(`/results/${race?.season}/${race?.round}?name=${encodeURIComponent(race.raceName)}`);
-                      }} hover key={index}>
-                        <TableCell
-                          className="custom-table-click"
-                          
-                        >
-                           <Button
+                      <TableRow
+                        onClick={() => {
+                          navigate(
+                            `/results/${race?.season}/${
+                              race?.round
+                            }?name=${encodeURIComponent(race.raceName)}`
+                          );
+                        }}
+                        hover
+                        key={index}
+                      >
+                        <TableCell className="custom-table-click">
+                          <Button
                             onClick={(e) => {
                               e.stopPropagation(); // Prevent row click when pinning
                               togglePin(`${race.season}-${race.round}`);
                             }}
                           >
-                            {pinnedRaces.has(`${race.season}-${race.round}`) ? "Unpin" : "Pin"}
+                            {pinnedRaces.has(`${race.season}-${race.round}`) ? (
+                              <PushPinIcon color="error" />
+                            ) : (
+                              <PushPinIcon color="action" />
+                            )}
                           </Button>
                           {race.raceName}
                         </TableCell>
@@ -128,11 +138,21 @@ function RacesPerSeason() {
                                   {race.raceName}
                                 </div>
                                 <div className="custom-card-mid">
-                                <div className="custom-card-subtitle"> <span className="custom-card-subtitle-label">circuit name :  </span> {race.Circuit.circuitName}</div>
-                                <div className="custom-card-date">{format(new Date(race?.date), "MMMM dd, yyyy")}</div>
+                                  <div className="custom-card-subtitle">
+                                    {" "}
+                                    <span className="custom-card-subtitle-label">
+                                      circuit name :{" "}
+                                    </span>{" "}
+                                    {race.Circuit.circuitName}
+                                  </div>
+                                  <div className="custom-card-date">
+                                    {format(
+                                      new Date(race?.date),
+                                      "MMMM dd, yyyy"
+                                    )}
+                                  </div>
                                 </div>
 
-                                
                                 <Button
                                   variant="contained"
                                   className="custom-card-btn"
