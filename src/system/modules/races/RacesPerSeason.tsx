@@ -113,9 +113,9 @@ function RacesPerSeason() {
                             }}
                           >
                             {pinnedRaces.has(`${race.season}-${race.round}`) ? (
-                              <PushPinIcon color="error" />
+                              <PushPinIcon sx={{color:"red"}} />
                             ) : (
-                              <PushPinIcon color="action" />
+                              <PushPinIcon sx={{color:"gray"}}/>
                             )}
                           </Button>
                           {race.raceName}
@@ -135,7 +135,26 @@ function RacesPerSeason() {
                             <Card className="custom-card" key={index}>
                               <CardContent className="custom-card-container">
                                 <div className="custom-card-top">
+                                 
                                   {race.raceName}
+                                  <div className="custom-card-top-postion">
+                                    <Button
+                                      onClick={(e) => {
+                                        e.stopPropagation(); // Prevent row click when pinning
+                                        togglePin(
+                                          `${race.season}-${race.round}`
+                                        );
+                                      }}
+                                    >
+                                      {pinnedRaces.has(
+                                        `${race.season}-${race.round}`
+                                      ) ? (
+                                        <PushPinIcon sx={{color:"red"}}/>
+                                      ) : (
+                                        <PushPinIcon sx={{color:"gray"}}/>
+                                      )}
+                                    </Button>
+                                  </div>
                                 </div>
                                 <div className="custom-card-mid">
                                   <div className="custom-card-subtitle">
