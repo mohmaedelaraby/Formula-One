@@ -20,6 +20,7 @@ import LoadingPage from "../../shared/loadingState/LoadingPage";
 import { useNavigate, useParams } from "react-router-dom";
 import { format } from "date-fns";
 import useRacePerSeasons from "./hooks/useRacePerSeason";
+import useStore from "../../stores/usePinSore";
 
 function RacesPerSeason() {
   const { season } = useParams();
@@ -36,6 +37,13 @@ function RacesPerSeason() {
     rowsPerPage,
     page,
   } = useRacePerSeasons({ season: season! });
+  const { pinnedRaces, togglePin } = useStore();
+
+  const sortedRaces = RaceData.sort((a, b) => {
+    const aIsPinned = pinnedRaces.has(`${a.season}-${a.round}`);
+    const bIsPinned = pinnedRaces.has(`${b.season}-${b.round}`);
+    return (bIsPinned ? 1 : 0) - (aIsPinned ? 1 : 0);
+  });
 
   if (isLoading || isError) {
     return <LoadingPage />;
@@ -84,13 +92,22 @@ function RacesPerSeason() {
                 )}
                 <TableBody>
                   {view === "table" &&
-                    RaceData.map((race: Races, index: number) => (
+                    sortedRaces.map((race: Races, index: number) => (
                       <TableRow  onClick={() => {
                         navigate(`/results/${race?.season}/${race?.round}?name=${encodeURIComponent(race.raceName)}`);
                       }} hover key={index}>
                         <TableCell
                           className="custom-table-click"
+                          
                         >
+                           <Button
+                            onClick={(e) => {
+                              e.stopPropagation(); // Prevent row click when pinning
+                              togglePin(`${race.season}-${race.round}`);
+                            }}
+                          >
+                            {pinnedRaces.has(`${race.season}-${race.round}`) ? "Unpin" : "Pin"}
+                          </Button>
                           {race.raceName}
                         </TableCell>
                         <TableCell>{race?.Circuit?.circuitName}</TableCell>
