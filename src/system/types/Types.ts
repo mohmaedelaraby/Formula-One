@@ -57,7 +57,19 @@ export interface Result {
     dateOfBirth: string;
     nationality: string;
   };
+
   Time: { millis: string; time: string };
+  FastestLap: {
+    rank: string;
+    lap: string;
+    Time: {
+      time: string;
+    };
+    AverageSpeed: {
+      units: string;
+      speed: string;
+    };
+  };
   grid: string;
   laps: string;
   number: string;

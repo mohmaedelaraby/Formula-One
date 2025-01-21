@@ -18,6 +18,7 @@ import { Result } from "../../types/Types";
 import LoadingPage from "../../shared/loadingState/LoadingPage";
 import { useParams } from "react-router-dom";
 import useRaceDetails from "./hooks/useRaceDeatails";
+import PostionCircle from "./components/Gold Circle/GoldCircle";
 
 function RaceDetails() {
   const { season, round } = useParams();
@@ -104,12 +105,22 @@ function RaceDetails() {
                               <Card className="custom-card" key={index}>
                                 <CardContent className="custom-card-container">
                                   <div className="custom-card-top">
-                                    {result.Driver.givenName}
+                                    {result.Driver.givenName}{" "}
+                                    {result.Driver.familyName}
+                                    <div className="custom-card-top-postion">
+                                      <PostionCircle number={result.position} />
+                                    </div>
                                   </div>
-                                  {/*  <div className="custom-card-mid">
-                                <div className="custom-card-subtitle"> <span className="custom-card-subtitle-label">circuit name :  </span> {race.Circuit.circuitName}</div>
-                                <div className="custom-card-date">{format(new Date(race?.date), "MMMM dd, yyyy")}</div>
-                                </div> */}
+                                  <div className="custom-card-mid">
+                                    <div>
+                                      He Is{" "}
+                                      <strong>
+                                        {result.Driver.nationality}
+                                      </strong>{" "}
+                                      Driver who Represnt
+                                      <strong>{result.Constructor.name}</strong>
+                                    </div>
+                                  </div>
 
                                   {/* <Button
                                   variant="contained"
