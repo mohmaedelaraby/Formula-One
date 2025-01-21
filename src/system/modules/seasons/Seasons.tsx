@@ -106,7 +106,7 @@ function Seasons() {
 
                   {view === "card" && (
                     <>
-                      <div className="gird_view">
+                      <div className="grid_view">
                         {SeasonData.map((season: Season, index: number) => (
                           <div>
                             <Card className="custom-card" key={index}>

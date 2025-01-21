@@ -1,7 +1,4 @@
-import React, { useEffect, useState } from "react";
 import "./Styles.css";
-import { useNavigate, useParams } from "react-router-dom";
-import useRacePerSeason from "./hooks/UseRacePerReason";
 import {
   Table,
   TableBody,
@@ -11,100 +8,151 @@ import {
   TableRow,
   TablePagination,
   Paper,
-  CircularProgress,
-  Typography,
+  Tooltip,
+  Card,
+  CardContent,
+  Button,
 } from "@mui/material";
+import TableRowsIcon from "@mui/icons-material/TableRows";
+import DashboardIcon from "@mui/icons-material/Dashboard";
 import { Races } from "../../types/Types";
+import LoadingPage from "../../shared/loadingState/LoadingPage";
+import { useNavigate, useParams } from "react-router-dom";
+import useGetRacePerSeasons from "./hooks/useGetRacePerSeason";
+import { format } from "date-fns";
 
 function RacesPerSeason() {
   const { season } = useParams();
-
-  const [page, setPage] = useState<number>(0);
-  const [rowsPerPage, setRowsPerPage] = useState<number>(10);
   const navigate = useNavigate();
-  const { RaceData, totalCount, isLoading, isError, refetch } =
-    useRacePerSeason(rowsPerPage, page * rowsPerPage, season);
+  const {
+    RaceData,
+    handleChangePage,
+    handleChangeRowsPerPage,
+    isError,
+    isLoading,
+    toggleView,
+    totalCount,
+    view,
+    rowsPerPage,
+    page,
+  } = useGetRacePerSeasons({ season: season! });
 
-  useEffect(() => {
-    refetch();
-  }, [page, rowsPerPage, refetch]);
-
-  // Handle page change event
-  const handleChangePage = (
-    event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number
-  ) => {
-    setPage(newPage);
-  };
-
-  // Handle rows per page change event
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
-
-  if (isLoading) {
-    return (
-      <Paper sx={{ padding: 2 }}>
-        <CircularProgress />
-      </Paper>
-    );
-  }
-
-  if (isError) {
-    return (
-      <Paper sx={{ padding: 2 }}>
-        <Typography color="error">
-          Error occurred while fetching data!
-        </Typography>
-      </Paper>
-    );
+  if (isLoading || isError) {
+    return <LoadingPage />;
   }
 
   return (
     <>
-      <Paper sx={{ width: "100%", overflow: "hidden" }}>
-        <TableContainer>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Race Per Season : {season}</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {RaceData.map((season: Races, index: number) => (
-                <TableRow hover key={index}>
-                  <TableCell
-                    onClick={() => {
-                      navigate(`/results/${season.season}/${season.round}`);
-                    }}
-                  >
-                    {season.season}
-                  </TableCell>
-                </TableRow>
-              ))}
-              {/* <div>
-                {RaceData.map((season: Season, index: number) => (
-                  <div className="test" style={{width:'200px'}} key={index}>
-                    {season.season}
-                  </div>
-                ))}
-              </div> */}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 50]}
-          component="div"
-          count={totalCount} // Use totalCount from the API response
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-      </Paper>
+      {!isLoading && (
+        <>
+          <div className="switch_view">
+            <Tooltip title="Table view">
+              <button
+                className={`switch_view_cards display_center ${
+                  view === "table" ? "active" : ""
+                }`}
+                onClick={() => toggleView("table")}
+              >
+                <TableRowsIcon />
+              </button>
+            </Tooltip>
+            <Tooltip title="Cards view">
+              <button
+                className={`switch_view_cards display_center ${
+                  view === "card" ? "active" : ""
+                }`}
+                onClick={() => toggleView("card")}
+              >
+                <DashboardIcon />
+              </button>
+            </Tooltip>
+          </div>
+          <Paper
+            className="display_center"
+            sx={{ width: "100%", overflow: "hidden" }}
+          >
+            <TableContainer className="custom-table-container">
+              <Table className="custom-table">
+                {view === "table" && (
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>Race</TableCell>
+                      <TableCell>Circuit</TableCell>
+                      <TableCell>Date</TableCell>
+                    </TableRow>
+                  </TableHead>
+                )}
+                <TableBody>
+                  {view === "table" &&
+                    RaceData.map((race: Races, index: number) => (
+                      <TableRow hover key={index}>
+                        <TableCell
+                          className="custom-table-click"
+                          onClick={() => {
+                            navigate(`/results/${race?.season}/${race?.round}`);
+                          }}
+                        >
+                          {race.raceName}
+                        </TableCell>
+                        <TableCell>{race?.Circuit?.circuitName}</TableCell>
+                        <TableCell>
+                          {format(new Date(race?.date), "MMMM dd, yyyy")}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+
+                  {view === "card" && (
+                    <>
+                      <div className="grid_view">
+                        {RaceData.map((race: Races, index: number) => (
+                          <div>
+                            <Card className="custom-card" key={index}>
+                              <CardContent className="custom-card-container">
+                                <div className="custom-card-top">
+                                  {race.raceName}
+                                </div>
+                                <div className="custom-card-mid">
+                                <div className="custom-card-subtitle"> <span className="custom-card-subtitle-label">circuit name :  </span> {race.Circuit.circuitName}</div>
+                                <div className="custom-card-date">{format(new Date(race?.date), "MMMM dd, yyyy")}</div>
+                                </div>
+
+                                
+                                <Button
+                                  variant="contained"
+                                  className="custom-card-btn"
+                                  size="small"
+                                  onClick={() => {
+                                    navigate(
+                                      `/results/${race?.season}/${race?.round}`
+                                    );
+                                  }}
+                                  style={{ marginTop: "10px" }}
+                                >
+                                  Show Results
+                                </Button>
+                              </CardContent>
+                            </Card>
+                          </div>
+                        ))}
+                      </div>
+                    </>
+                  )}
+                </TableBody>
+              </Table>
+              <TablePagination
+                className="custom-pagination"
+                rowsPerPageOptions={[9, 27, 30]}
+                component="div"
+                count={totalCount} // Use totalCount from the API response
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+              />
+            </TableContainer>
+          </Paper>
+        </>
+      )}
     </>
   );
 }

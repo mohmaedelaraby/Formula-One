@@ -66,3 +66,21 @@
   .custom-pagination .MuiPaginationItem-root {
     color: white !important;
   }
+
+  @media (max-width: 1024px) { /* Tablet screens and below */
+    .custom-pagination .MuiPaginationItem-root {
+      color: white !important;
+    }
+    .custom-pagination .MuiTablePagination-selectLabel,
+    .MuiTablePagination-select,
+    .MuiSelect-icon,
+    .MuiTablePagination-displayedRows,
+    .MuiIconButton-root {
+      font-family: "Bruno Ace", serif !important;
+      color: white !important;
+      font-weight: 600 !important;
+      font-size: 12px !important;
+    }
+  }
+  
+ 

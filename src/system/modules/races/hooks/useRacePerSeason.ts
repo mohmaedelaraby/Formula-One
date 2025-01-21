@@ -10,7 +10,7 @@ const fetchRacePerSeason = async (
   return await getRacePerSeason(limit, offset, season);
 };
 
-const useSeasons = (limit = 10, offset = 0, season = "") => {
+const useRacePerSeason = (limit = 10, offset = 0, season = "") => {
   const {
     data,
     isLoading,
@@ -36,4 +36,4 @@ const useSeasons = (limit = 10, offset = 0, season = "") => {
   };
 };
 
-export default useSeasons;
+export default useRacePerSeason;
