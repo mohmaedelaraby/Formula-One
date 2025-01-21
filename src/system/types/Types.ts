@@ -10,7 +10,7 @@ export interface SeasonResponse {
   total: number; // The total number of seasons available in the database
 }
 
-export interface SeasonResponse {
+export interface RaceResponse {
   RaceTable: {
     Races: Races[];
   };
