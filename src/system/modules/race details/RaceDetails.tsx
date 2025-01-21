@@ -11,19 +11,16 @@ import {
   Tooltip,
   Card,
   CardContent,
-  Button,
 } from "@mui/material";
 import TableRowsIcon from "@mui/icons-material/TableRows";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import { Races, Result } from "../../types/Types";
+import { Result } from "../../types/Types";
 import LoadingPage from "../../shared/loadingState/LoadingPage";
-import { useNavigate, useParams } from "react-router-dom";
-import { format } from "date-fns";
+import { useParams } from "react-router-dom";
 import useRaceDetails from "./hooks/useRaceDeatails";
 
 function RaceDetails() {
   const { season, round } = useParams();
-  const navigate = useNavigate();
   const {
     RaceDetailsData,
     handleChangePage,
@@ -35,7 +32,7 @@ function RaceDetails() {
     view,
     rowsPerPage,
     page,
-  } = useRaceDetails({ season: season! ,round:round!});
+  } = useRaceDetails({ season: season!, round: round! });
 
   if (isLoading || isError) {
     return <LoadingPage />;
@@ -85,37 +82,36 @@ function RaceDetails() {
                 )}
                 <TableBody>
                   {view === "table" &&
-                    RaceDetailsData[0]?.Results.map((result: Result, index: number) => (
-                      <TableRow hover key={index}>
-                        <TableCell
-                          className="custom-table-click"
-                        >
-                          {result.Driver.givenName} {result.Driver.familyName}  
-                        </TableCell>
-                        <TableCell>{result.Driver.nationality}</TableCell>
-                        <TableCell>{result.Constructor.name}</TableCell>
-                        <TableCell>{result.position}</TableCell>
-
-                      </TableRow>
-                    ))}
+                    RaceDetailsData[0]?.Results.map(
+                      (result: Result, index: number) => (
+                        <TableRow hover key={index}>
+                          <TableCell className="custom-table-click">
+                            {result.Driver.givenName} {result.Driver.familyName}
+                          </TableCell>
+                          <TableCell>{result.Driver.nationality}</TableCell>
+                          <TableCell>{result.Constructor.name}</TableCell>
+                          <TableCell>{result.position}</TableCell>
+                        </TableRow>
+                      )
+                    )}
 
                   {view === "card" && (
                     <>
                       <div className="grid_view">
-                        {RaceDetailsData[0]?.Results.map((result: Result, index: number) => (
-                          <div>
-                            <Card className="custom-card" key={index}>
-                              <CardContent className="custom-card-container">
-                                <div className="custom-card-top">
-                                  {result.Driver.givenName}
-                                </div>
-                               {/*  <div className="custom-card-mid">
+                        {RaceDetailsData[0]?.Results.map(
+                          (result: Result, index: number) => (
+                            <div>
+                              <Card className="custom-card" key={index}>
+                                <CardContent className="custom-card-container">
+                                  <div className="custom-card-top">
+                                    {result.Driver.givenName}
+                                  </div>
+                                  {/*  <div className="custom-card-mid">
                                 <div className="custom-card-subtitle"> <span className="custom-card-subtitle-label">circuit name :  </span> {race.Circuit.circuitName}</div>
                                 <div className="custom-card-date">{format(new Date(race?.date), "MMMM dd, yyyy")}</div>
                                 </div> */}
 
-                                
-                                {/* <Button
+                                  {/* <Button
                                   variant="contained"
                                   className="custom-card-btn"
                                   size="small"
@@ -128,10 +124,11 @@ function RaceDetails() {
                                 >
                                   Show Results
                                 </Button> */}
-                              </CardContent>
-                            </Card>
-                          </div>
-                        ))}
+                                </CardContent>
+                              </Card>
+                            </div>
+                          )
+                        )}
                       </div>
                     </>
                   )}
