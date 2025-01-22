@@ -19,6 +19,7 @@ const useSeasons = () => {
   }, [page, rowsPerPage, refetch]);
 
   // Handle page change event
+  
   const handleChangePage = (
     event: React.MouseEvent<HTMLButtonElement> | null,
     newPage: number

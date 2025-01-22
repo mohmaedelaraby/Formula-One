@@ -1,4 +1,3 @@
-import React from 'react'
 import header_logo from '../../../assets/images/header_logo.svg';
 import './style.css'
 import { useCurrentPage } from '../../hooks/useCurrentPage';

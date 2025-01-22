@@ -1,5 +1,4 @@
 import { Card, CardActionArea, CardContent } from "@mui/material";
-import React from "react";
 import "./style.css";
 import { Races } from "../../../../types/Types";
 import BarChartComponent from "../../../../shared/BarCharts/BarChart";
