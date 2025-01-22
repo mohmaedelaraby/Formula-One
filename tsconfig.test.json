@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+      "target": "esnext",
+      "module": "esnext",
+      "moduleResolution": "node",
+      "jsx": "react-jsx",
+      "types": ["jest"]
+    },
+    "include": ["src/**/*", "jest.setup.ts"]
+  }
+  
