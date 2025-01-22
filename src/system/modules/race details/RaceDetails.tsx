@@ -39,24 +39,17 @@ function RaceDetails() {
   if (isLoading || isError) {
     return <LoadingPage />;
   }
+  console.log(RaceDetailsData)
 
   return (
     <>
       {!isLoading && (
         <>
-          <div className="display_center display_center_col w-100">
-            <ChartsSection data={RaceDetailsData}/>
-            <div className="switch_view  raceDetailsPageWidth">
-              {/* <div>
-                <Tooltip title="Visualization">
-                  <button
-                    className={`switch_view_cards display_center`}
-                    onClick={() => {}}
-                  >
-                    <BarChartIcon />
-                  </button>
-                </Tooltip>
-              </div> */}
+          <div className="display_center   display_center_col w-100">
+            <ChartsSection data={RaceDetailsData} />
+
+            <div className="switch_view switch_view_between raceDetailsPageWidth">
+              <p className="custom-table-title">Drivers </p>
               <div className="display_center">
                 <Tooltip title="Table view">
                   <button
@@ -80,6 +73,7 @@ function RaceDetails() {
                 </Tooltip>
               </div>
             </div>
+
             <Paper
               className="display_center"
               sx={{ width: "100%", overflow: "hidden", marginTop: "12px" }}
@@ -132,11 +126,11 @@ function RaceDetails() {
                                     <div className="custom-card-mid">
                                       <div>
                                         He Is{" "}
-                                        <strong>
+                                        <strong className="custom-card-mid-nat">
                                           {result.Driver.nationality}
                                         </strong>{" "}
-                                        Driver who Represnt
-                                        <strong>
+                                        Driver who Represnt {" "}
+                                        <strong className="custom-card-mid-team">
                                           {result.Constructor.name}
                                         </strong>
                                       </div>

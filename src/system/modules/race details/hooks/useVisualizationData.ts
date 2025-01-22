@@ -9,7 +9,7 @@ interface Props {
 const useVisualizationData = (props: Props) => {
   const { data } = props;
 
-  const barChartDataset = useMemo(() => {
+  const barChartLabsDataset = useMemo(() => {
     if (data && data[0]?.Results) {
       return data[0].Results.map((driver) => ({
         driverName: driver.Driver.givenName,
@@ -24,9 +24,9 @@ const useVisualizationData = (props: Props) => {
     return `${value}`;
   }
 
-  const barChartsChartSetting = {
+  const barChartsChartLabsSetting = {
     width: 600,
-    height: 300,
+    height: 200,
     sx: {
       [`.${axisClasses.left} .${axisClasses.label}`]: {
         transform: "translate(-20px, 0)",
@@ -34,7 +34,7 @@ const useVisualizationData = (props: Props) => {
     },
   };
 
-  const barChartSeris = useMemo(() => {
+  const barChartLabsSeris = useMemo(() => {
     return [
       {
         dataKey: "laps",
@@ -51,12 +51,57 @@ const useVisualizationData = (props: Props) => {
     ];
   }, []);
 
-  const barChartdataKey = useMemo(() => {
+  const barChartLabsdataKey = useMemo(() => {
     return "driverName";
   }, []);
   const lineChartLabel = useMemo(() => {
     return "Points";
   }, []);
+
+
+
+  const barChartTimingDataset = useMemo(() => {
+    if (data && data[0]?.Results) {
+      return data[0].Results.map((driver) => ({
+        driverName: driver.Driver.givenName,
+        time: +driver?.Time?.time || 0,
+      }));
+    }
+    return []; // Return an empty array if there's no data
+  }, [data]);
+
+  function barChartValueTimingFormatter(value: number | null) {
+    return `${value}`;
+  }
+
+  const barChartsChartTimingSetting = {
+    width: 600,
+    height: 200,
+    sx: {
+      [`.${axisClasses.left} .${axisClasses.label}`]: {
+        transform: "translate(-20px, 0)",
+      },
+    },
+  };
+
+  const barChartTimingSeris = useMemo(() => {
+    return [
+      {
+        dataKey: "time",
+        label: "Time",
+        barChartValueTimingFormatter,
+        color: "#e10600 ",
+      }
+    ];
+  }, []);
+
+  const barChartdataTimingKey = useMemo(() => {
+    return "driverName";
+  }, []);
+
+
+
+
 
   const lineChartxAxis = useMemo(() => {
     if (data && data[0]?.Results) {
@@ -73,11 +118,15 @@ const useVisualizationData = (props: Props) => {
   }, [data]);
 
   return {
-    barChartsChartSetting,
+    barChartsChartLabsSetting,
+    barChartLabsDataset,
+    barChartLabsSeris,
+    barChartLabsdataKey,
+    barChartTimingDataset,
+    barChartTimingSeris,
+    barChartdataTimingKey,
+    barChartsChartTimingSetting,
     lineChartxAxis,
-    barChartDataset,
-    barChartSeris,
-    barChartdataKey,
     lineChartyAxis,
     lineChartLabel,
   };

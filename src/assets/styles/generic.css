@@ -7,6 +7,9 @@
 .display_center_col {
   flex-direction: column;
 }
+.mb-0{
+  margin-bottom: 0px !important;
+}
 .w-100{
 width: 100%;
 }
@@ -83,3 +86,15 @@ width: 100%;
   background: gray; 
 }
 
+
+/* Style for the LineChart */
+.my-line-chart .MuiXAxisLabel-root,
+.my-line-chart .MuiYAxisLabel-root {
+  font-family: "Racing Sans One", serif !important; /* Change the font family for axis labels */
+}
+
+/* Optionally, you can change font for other parts of the chart as well */
+.my-line-chart .MuiChartLegend-root,
+.my-line-chart .MuiTooltip-tooltip {
+  font-family: "Racing Sans One", serif !important; /* Change font family for legend and tooltip */
+}

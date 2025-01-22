@@ -35,6 +35,12 @@
   justify-content: space-between;
   padding: 16px 12px;
 }
+.custom-card-mid-team{
+  color: #e10600 !important;
+}
+.custom-card-mid-nat{
+  color: #15151e !important;
+}
 .custom-card-subtitle-label{
   font-weight: bold;
   font-size: 12px;

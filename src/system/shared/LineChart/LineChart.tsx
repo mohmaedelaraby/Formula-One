@@ -7,9 +7,10 @@ interface Props {
   width?: any;
   height?: any;
   label?: string;
+  hideLegend?:boolean
 }
 function LineChartComponent(props: Props) {
-  const { height, series, width, xAxisData, label } = props;
+  const { height, series, width, xAxisData, label , hideLegend = false} = props;
 
   return (
     <div>
@@ -27,6 +28,11 @@ function LineChartComponent(props: Props) {
         xAxis={[{ scaleType: "point", data: xAxisData }]}
         yAxis={[{ id: "leftAxisId" }, { id: "rightAxisId" }]}
         rightAxis="rightAxisId"
+        slotProps={{
+          legend:{
+            hidden:hideLegend
+          }
+        }}
       />
     </div>
   );

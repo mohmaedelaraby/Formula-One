@@ -13,32 +13,44 @@ function ChartsSection(props: Props) {
   const { data } = props;
   console.log(data);
   const {
-    barChartDataset,
-    barChartSeris,
-    barChartdataKey,
-    barChartsChartSetting,
+    barChartLabsDataset,
+    barChartLabsSeris,
+    barChartLabsdataKey,
+    barChartsChartLabsSetting,
+    barChartTimingDataset,
+    barChartTimingSeris,
+    barChartdataTimingKey,
+    barChartsChartTimingSetting,
     lineChartyAxis,
     lineChartxAxis,
-    lineChartLabel
+    lineChartLabel,
   } = useVisualizationData({ data: data });
 
   return (
     <div className="charts">
+      <p className="charts-title">Analyitcs</p>
       <div className="charts_container">
         <Card className="charts_card">
           <CardActionArea>
-            <CardContent style={{ width: "100%", overflowX: "auto" }}>
-              {barChartDataset &&
-                barChartSeris &&
-                barChartdataKey &&
-                barChartsChartSetting && (
-                  <BarChartComponent
-                    chartSetting={barChartsChartSetting}
-                    dataKey={barChartdataKey}
-                    dataset={barChartDataset}
-                    series={barChartSeris}
-                    key={"barChart"}
-                  />
+            <CardContent>
+              {barChartTimingDataset &&
+                barChartTimingSeris &&
+                barChartdataTimingKey &&
+                barChartsChartTimingSetting && (
+                  <>
+                    <p className="charts-card-title mb-0">Drivers Timing</p>
+                    <p className="charts-card-hint">some drivers dosen't had time</p>
+                    <div className="charts_card_conatainer_overflow">
+                      <BarChartComponent
+                        chartSetting={barChartsChartTimingSetting}
+                        dataKey={barChartdataTimingKey}
+                        dataset={barChartTimingDataset}
+                        series={barChartTimingSeris}
+                        key={"time bar chart"}
+                        hideLegend={true}
+                      />
+                    </div>
+                  </>
                 )}
             </CardContent>
           </CardActionArea>
@@ -46,14 +58,46 @@ function ChartsSection(props: Props) {
 
         <Card className="charts_card">
           <CardActionArea>
-            <CardContent style={{ width: "100%", overflowX: "auto" }}>
-              <LineChartComponent
-                height={300}
-                width={550}
-                series={lineChartyAxis}
-                xAxisData={lineChartxAxis}
-                label={lineChartLabel}
-              />
+            <CardContent>
+              {barChartLabsDataset &&
+                barChartLabsSeris &&
+                barChartLabsdataKey &&
+                barChartsChartLabsSetting && (
+                  <>
+                    <p className="charts-card-title">Drivers Labs and Grids</p>
+                    <div className="charts_card_conatainer_overflow">
+                      <BarChartComponent
+                        chartSetting={barChartsChartLabsSetting}
+                        dataKey={barChartLabsdataKey}
+                        dataset={barChartLabsDataset}
+                        series={barChartLabsSeris}
+                        key={"barChart"}
+                      />
+                    </div>
+                  </>
+                )}
+            </CardContent>
+          </CardActionArea>
+        </Card>
+        <Card className="charts_card">
+          <CardActionArea>
+            <CardContent className="charts_card_conatainer">
+              {lineChartyAxis && lineChartxAxis && lineChartLabel && (
+                <>
+                  <p className="charts-card-title">Drivers Points</p>
+                  <div className="charts_card_conatainer_overflow">
+                    <LineChartComponent
+                      height={200}
+                      width={500}
+                      series={lineChartyAxis}
+                      xAxisData={lineChartxAxis}
+                      label={lineChartLabel}
+                      key={"lineChart"}
+                      hideLegend={true}
+                    />
+                  </div>
+                </>
+              )}
             </CardContent>
           </CardActionArea>
         </Card>

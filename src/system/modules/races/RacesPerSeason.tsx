@@ -54,27 +54,31 @@ function RacesPerSeason() {
     <>
       {!isLoading && (
         <>
-          <div className="switch_view">
-            <Tooltip title="Table view">
-              <button
-                className={`switch_view_cards display_center ${
-                  view === "table" ? "active" : ""
-                }`}
-                onClick={() => toggleView("table")}
-              >
-                <TableRowsIcon />
-              </button>
-            </Tooltip>
-            <Tooltip title="Cards view">
-              <button
-                className={`switch_view_cards display_center ${
-                  view === "card" ? "active" : ""
-                }`}
-                onClick={() => toggleView("card")}
-              >
-                <DashboardIcon />
-              </button>
-            </Tooltip>
+        <div className="display_center   display_center_col w-100">
+          <div className="switch_view switch_view_between raceDetailsPageWidth">
+            <p className="custom-table-title">Races </p>
+            <div className="display_center">
+              <Tooltip title="Table view">
+                <button
+                  className={`switch_view_cards display_center ${
+                    view === "table" ? "active" : ""
+                  }`}
+                  onClick={() => toggleView("table")}
+                >
+                  <TableRowsIcon />
+                </button>
+              </Tooltip>
+              <Tooltip title="Cards view">
+                <button
+                  className={`switch_view_cards display_center ${
+                    view === "card" ? "active" : ""
+                  }`}
+                  onClick={() => toggleView("card")}
+                >
+                  <DashboardIcon />
+                </button>
+              </Tooltip>
+            </div>
           </div>
           <Paper
             className="display_center"
@@ -113,9 +117,9 @@ function RacesPerSeason() {
                             }}
                           >
                             {pinnedRaces.has(`${race.season}-${race.round}`) ? (
-                              <PushPinIcon sx={{color:"red"}} />
+                              <PushPinIcon sx={{ color: "red" }} />
                             ) : (
-                              <PushPinIcon sx={{color:"gray"}}/>
+                              <PushPinIcon sx={{ color: "gray" }} />
                             )}
                           </Button>
                           {race.raceName}
@@ -135,7 +139,6 @@ function RacesPerSeason() {
                             <Card className="custom-card" key={index}>
                               <CardContent className="custom-card-container">
                                 <div className="custom-card-top">
-                                 
                                   {race.raceName}
                                   <div className="custom-card-top-postion">
                                     <Button
@@ -149,9 +152,9 @@ function RacesPerSeason() {
                                       {pinnedRaces.has(
                                         `${race.season}-${race.round}`
                                       ) ? (
-                                        <PushPinIcon sx={{color:"red"}}/>
+                                        <PushPinIcon sx={{ color: "red" }} />
                                       ) : (
-                                        <PushPinIcon sx={{color:"gray"}}/>
+                                        <PushPinIcon sx={{ color: "gray" }} />
                                       )}
                                     </Button>
                                   </div>
@@ -206,6 +209,7 @@ function RacesPerSeason() {
               />
             </TableContainer>
           </Paper>
+          </div>
         </>
       )}
     </>

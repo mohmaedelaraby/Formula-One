@@ -6,9 +6,10 @@ interface Props {
   chartSetting?: any;
   dataKey?: string;
   series?: any;
+  hideLegend?: boolean;
 }
 function BarChartComponent(props: Props) {
-  const { chartSetting, dataset, dataKey, series } = props;
+  const { chartSetting, dataset, dataKey, series, hideLegend = false } = props;
 
   return (
     <div>
@@ -17,6 +18,11 @@ function BarChartComponent(props: Props) {
         xAxis={[{ scaleType: "band", dataKey: dataKey }]}
         series={series}
         {...chartSetting}
+        slotProps={{
+          legend: {
+            hidden: hideLegend,
+          },
+        }}
       />
     </div>
   );
