@@ -1,8 +1,10 @@
+import React from 'react'; // Add this line
 import { render, screen } from '@testing-library/react';
 import Seasons from './Seasons';
 
-test('renders MyComponent', () => {
-  render(<Seasons />);
-  const linkElement = screen.getByText(/hello/i);
-  expect(linkElement).toBeInTheDocument();
+describe('Seasons Component', () => {
+  it('renders correctly', () => {
+    render(<Seasons />);
+    expect(screen.getByText('Seasons')).toBeInTheDocument();
+  });
 });

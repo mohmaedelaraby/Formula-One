@@ -1,3 +1,4 @@
+import React from 'react'; // Add this line
 import "./Styles.css";
 import {
   Table,
@@ -43,7 +44,7 @@ function Seasons() {
     <>
       {!isLoading && (
         <>
-          <div className="display_center   display_center_col w-100">
+          <div className="display_center display_center_col w-100">
             <div className="switch_view switch_view_between raceDetailsPageWidth">
               <p className="custom-table-title">Seasons </p>
               <div className="display_center">
@@ -112,8 +113,8 @@ function Seasons() {
                       <>
                         <div className="grid_view">
                           {SeasonData.map((season: Season, index: number) => (
-                            <div>
-                              <Card className="custom-card" key={index}>
+                            <div key={index}>
+                              <Card className="custom-card">
                                 <CardContent className="custom-card-container">
                                   <div className="custom-card-top">
                                     <a
