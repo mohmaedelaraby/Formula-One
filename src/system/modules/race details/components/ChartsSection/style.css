@@ -18,8 +18,8 @@
 .charts_container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  padding: 8px;
+  gap: 12px;
+  padding: 12px;
 }
 .charts_card_conatainer {
   margin-bottom: 10px;
@@ -36,7 +36,8 @@
 }
 
 .charts_card_conatainer_overflow::-webkit-scrollbar {
-  width: 5px;
+  width: 4px;
+  height: 4px;
 }
 
 /* Track */
@@ -62,13 +63,8 @@
 @media (max-width: 1024px) {
   /* Tablet screens and below */
   .charts_container {
-    grid-template-columns: repeat(2, 1fr); /* 2 items per row for tablets */
+    grid-template-columns: repeat(1, 1fr); /* 2 items per row for tablets */
   }
 }
 
-@media (max-width: 600px) {
-  /* Mobile screens */
-  .charts_container {
-    grid-template-columns: 1fr; /* 1 item per row for mobile */
-  }
-}
+

@@ -25,7 +25,7 @@ const useVisualizationData = (props: Props) => {
   }
 
   const barChartsChartLabsSetting = {
-    width: 600,
+    width: 1000,
     height: 200,
     sx: {
       [`.${axisClasses.left} .${axisClasses.label}`]: {
@@ -75,7 +75,7 @@ const useVisualizationData = (props: Props) => {
   }
 
   const barChartsChartTimingSetting = {
-    width: 600,
+    width: 1000,
     height: 200,
     sx: {
       [`.${axisClasses.left} .${axisClasses.label}`]: {

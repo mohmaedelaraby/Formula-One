@@ -87,7 +87,7 @@ function ChartsSection(props: Props) {
                   <div className="charts_card_conatainer_overflow">
                     <LineChartComponent
                       height={200}
-                      width={500}
+                      width={1000}
                       series={lineChartyAxis}
                       xAxisData={lineChartxAxis}
                       label={lineChartLabel}
