@@ -11,7 +11,7 @@ const fetchRaceResault = async (
   return await getRaceResult(limit, offset, season, round);
 };
 
-const useGetRaceResult = (limit = 10, offset = 0,season = "", round = "") => {
+const useGetRaceResult = (limit = 18, offset = 0,season = "", round = "") => {
   const {
     data,
     isLoading,

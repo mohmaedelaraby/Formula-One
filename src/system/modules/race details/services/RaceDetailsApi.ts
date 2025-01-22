@@ -2,7 +2,7 @@ import axios from "axios";
 import { RaceResultsResponse } from "../../../types/Types";
 
 export const getRaceResult = async (
-  limit = 10,
+  limit = 18,
   offset = 0,
   season: string,
   round: string
