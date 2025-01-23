@@ -59,8 +59,8 @@
 }
 .custom-card-top-postion{
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 5px;
+  left: 0px;
 }
 
 .custom-card-btn {

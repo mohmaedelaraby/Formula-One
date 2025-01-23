@@ -1,6 +1,7 @@
 /* //table section// */
 .custom-table-container {
   width: 90% !important;
+
   margin-top: 20px;
   margin-bottom: 20px;
   border-top-left-radius: 10px;
@@ -11,6 +12,7 @@
   border-collapse: collapse;
   background-color: #fafafa;
 }
+
 .custom-table-click {
   cursor: pointer;
 }

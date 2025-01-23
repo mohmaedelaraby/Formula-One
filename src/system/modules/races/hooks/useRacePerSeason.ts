@@ -7,7 +7,7 @@ interface Props {
 export const useRacePerSeasons = (props: Props) => {
   const { season } = props;
   const [page, setPage] = useState<number>(0);
-  const [rowsPerPage, setRowsPerPage] = useState<number>(9);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(20);
   const { RaceData, totalCount, isLoading, isError, refetch } =
     useGetRacePerSeasons(rowsPerPage, page * rowsPerPage, season);
   const [view, setView] = useState<"table" | "card">("table"); // State to track the current view
@@ -30,7 +30,7 @@ export const useRacePerSeasons = (props: Props) => {
 
   const handleChangeRowsPerPage = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      setRowsPerPage(parseInt(event.target.value, 10));
+      setRowsPerPage(parseInt(event.target.value, 20));
       setPage(0);
     },
     []

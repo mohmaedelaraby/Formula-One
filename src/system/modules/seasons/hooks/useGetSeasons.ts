@@ -10,7 +10,7 @@ const fetchSeasons = async (
   return await getSeason(limit, offset);
 };
 
-const useGetSeasons = (limit = 10, offset = 0) => {
+const useGetSeasons = (limit = 20, offset = 0) => {
   const { data, isLoading, isError, refetch }: UseQueryResult<SeasonResponse, Error> =
     useQuery<SeasonResponse, Error>(
       ["seasons", { limit, offset }],

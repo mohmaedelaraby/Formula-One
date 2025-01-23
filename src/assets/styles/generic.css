@@ -49,10 +49,16 @@ width: 100%;
 .custom-textfield{
   padding: 0px !important;
   margin: 0px !important;
-  display: flex
-;
+  display: flex;
   align-items: center;
   justify-content: end;
+
+}
+.MuiOutlinedInput-notchedOutline{
+  border: 1px solid rgba(0, 0, 0, 0.2)!important;
+  border-radius: 10px!important;
+  box-shadow:1px 1px  1px 1px rgba(0, 0, 0, 0.2);
+
 }
 .custom-textfield input{
   padding: 8px 16px;
