@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import useGetRaceResult from "./useGetRaceDetails";
 import { Result } from "../../../types/Types";
+import debounce from "lodash.debounce";
 
 interface Props {
   season: string;
@@ -49,14 +50,14 @@ export const useRaceDetails = (props: Props) => {
   );
 
   const driverSearch = useCallback(
-    (name: string) => {
+    debounce((name: string) => {
       if (!name) {
         if (RaceDetailsData?.[0]?.Results) {
           setFilteredResults(RaceDetailsData[0]?.Results);
         }
         return;
       }
-
+  
       const filtered = RaceDetailsData?.[0]?.Results.filter(
         (driver: Result) =>
           driver?.Driver?.givenName
@@ -64,12 +65,11 @@ export const useRaceDetails = (props: Props) => {
             .includes(name.toLowerCase()) ||
           driver?.Driver?.familyName?.toLowerCase().includes(name.toLowerCase())
       );
-
+  
       setFilteredResults(filtered || []);
-    },
+    }, 300), 
     [RaceDetailsData]
   );
-
   return {
     view,
     handleChangePage,
