@@ -48,7 +48,7 @@ describe('RacesPerSeason Component', () => {
       toggleView: jest.fn(),
       totalCount: 0,
       view: 'table',
-      rowsPerPage: 9,
+      rowsPerPage: 20,
       page: 0,
     });
 
@@ -93,7 +93,7 @@ describe('RacesPerSeason Component', () => {
       toggleView: jest.fn(),
       totalCount: 2,
       view: 'table',
-      rowsPerPage: 9,
+      rowsPerPage: 20,
       page: 0,
     });
 
@@ -135,7 +135,7 @@ describe('RacesPerSeason Component', () => {
       toggleView: jest.fn(),
       totalCount: 1,
       view: 'table',
-      rowsPerPage: 9,
+      rowsPerPage: 20,
       page: 0,
     });
 

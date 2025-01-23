@@ -200,7 +200,7 @@ function RacesPerSeason() {
               </Table>
               <TablePagination
                 className="custom-pagination"
-                rowsPerPageOptions={[9, 27, 30]}
+                rowsPerPageOptions={[20, 40, 60]}
                 component="div"
                 count={totalCount} // Use totalCount from the API response
                 rowsPerPage={rowsPerPage}
