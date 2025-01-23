@@ -65,7 +65,7 @@ const useVisualizationData = (props: Props) => {
       return data[0].Results.filter((d)=>d?.Time?.time).map((driver) => (
         {
         driverName: driver.Driver.givenName,
-        time: +driver?.Time?.time || 0,
+        time: +driver?.Time?.time || 1,
       }));
     }
     return []; // Return an empty array if there's no data
