@@ -62,7 +62,8 @@ const useVisualizationData = (props: Props) => {
 
   const barChartTimingDataset = useMemo(() => {
     if (data && data[0]?.Results) {
-      return data[0].Results.map((driver) => ({
+      return data[0].Results.filter((d)=>d?.Time?.time).map((driver) => (
+        {
         driverName: driver.Driver.givenName,
         time: +driver?.Time?.time || 0,
       }));

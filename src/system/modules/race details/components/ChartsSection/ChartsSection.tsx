@@ -46,6 +46,7 @@ function ChartsSection(props: Props) {
                         series={barChartTimingSeris}
                         key={"time bar chart"}
                         hideLegend={true}
+                        isHorizontal={true}
                       />
                     </div>
                   </>
