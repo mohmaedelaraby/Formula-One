@@ -13,13 +13,14 @@ import {
   CardContent,
   Button,
 } from "@mui/material";
+import React from 'react'; // Add this line
 import TableRowsIcon from "@mui/icons-material/TableRows";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import { Races } from "../../types/Types";
 import LoadingPage from "../../shared/loadingState/LoadingPage";
 import { useNavigate, useParams } from "react-router-dom";
 import { format } from "date-fns";
-import useRacePerSeasons from "./hooks/useRacePerSeason";
+import {useRacePerSeasons} from "./hooks/useRacePerSeason";
 import usePinStore from "../../stores/usePinSore";
 import PushPinIcon from "@mui/icons-material/PushPin";
 

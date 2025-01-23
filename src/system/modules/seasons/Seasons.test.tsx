@@ -61,7 +61,7 @@ describe('Seasons Component', () => {
     expect(screen.getByText('Loading...')).toBeInTheDocument();
   });
 
-  it('displays data successfully when data is fetched', () => {
+  it('displays Seasons data successfully when data is fetched', () => {
     (useSeasonsModule.useSeasons as jest.Mock).mockReturnValue({
       isLoading: false,
       isError: false,

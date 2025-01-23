@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useState } from "react";
 interface Props {
   season: string;
 }
-const useRacePerSeasons = (props: Props) => {
+export const useRacePerSeasons = (props: Props) => {
   const { season } = props;
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(9);
@@ -50,4 +50,3 @@ const useRacePerSeasons = (props: Props) => {
   };
 };
 
-export default useRacePerSeasons;
