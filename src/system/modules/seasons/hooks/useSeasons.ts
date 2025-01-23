@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from "react";
 
 export const useSeasons = () => {
   const [page, setPage] = useState<number>(0);
-  const [rowsPerPage, setRowsPerPage] = useState<number>(20);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(10);
   const { SeasonData, totalCount, isLoading, isError, refetch } = useGetSeasons(
     rowsPerPage,
     page * rowsPerPage
@@ -29,7 +29,7 @@ export const useSeasons = () => {
 
   const handleChangeRowsPerPage = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      setRowsPerPage(parseInt(event.target.value, 20));
+      setRowsPerPage(parseInt(event.target.value, 10));
       setPage(0);
     },
     []

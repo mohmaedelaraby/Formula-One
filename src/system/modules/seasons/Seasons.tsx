@@ -153,7 +153,7 @@ function Seasons() {
                 </Table>
                 <TablePagination
                   className="custom-pagination"
-                  rowsPerPageOptions={[20, 40, 60]}
+                  rowsPerPageOptions={[10, 20, 40]}
                   component="div"
                   count={totalCount} // Use totalCount from the API response
                   rowsPerPage={rowsPerPage}
