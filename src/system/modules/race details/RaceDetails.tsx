@@ -22,6 +22,7 @@ import { useParams } from "react-router-dom";
 import { useRaceDetails } from "./hooks/useRaceDeatails";
 import PostionCircle from "./components/Postion Circle/PostionCircle";
 import ChartsSection from "./components/ChartsSection/ChartsSection";
+import NotFoundPage from "../../shared/NotFoundPage/NotFoundPage";
 
 function RaceDetails() {
   const { season, round } = useParams();
@@ -39,14 +40,15 @@ function RaceDetails() {
     page,
     driverSearch,
   } = useRaceDetails({ season: season!, round: round! });
-
-  if (isLoading || isError || !RaceDetailsData) {
+  if (isLoading) {
     return <LoadingPage />;
   }
-
+  if (isError) {
+    return <NotFoundPage />;
+  }
   return (
     <>
-      {!isLoading && (
+      {!isLoading && !isError && (
         <div className="display_center display_center_col w-100">
           <ChartsSection data={{ ...RaceDetailsData }} />
 

@@ -23,6 +23,7 @@ import { format } from "date-fns";
 import {useRacePerSeasons} from "./hooks/useRacePerSeason";
 import usePinStore from "../../stores/usePinSore";
 import PushPinIcon from "@mui/icons-material/PushPin";
+import NotFoundPage from '../../shared/NotFoundPage/NotFoundPage';
 
 function RacesPerSeason() {
   const { season } = useParams();
@@ -47,13 +48,16 @@ function RacesPerSeason() {
     return (bIsPinned ? 1 : 0) - (aIsPinned ? 1 : 0);
   });
 
-  if (isLoading || isError) {
+  if (isLoading) {
     return <LoadingPage />;
+  }
+  if (isError) {
+    return <NotFoundPage />;
   }
 
   return (
     <>
-      {!isLoading && (
+      {!isLoading && !isError && (
         <>
         <div className="display_center   display_center_col w-100">
           <div className="switch_view switch_view_between raceDetailsPageWidth">

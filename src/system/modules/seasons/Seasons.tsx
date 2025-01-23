@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import "./Styles.css";
 import {
   Table,
@@ -19,7 +19,8 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import { Season } from "../../types/Types";
 import LoadingPage from "../../shared/loadingState/LoadingPage";
 import { useNavigate } from "react-router-dom";
-import {useSeasons} from "./hooks/useSeasons";
+import { useSeasons } from "./hooks/useSeasons";
+import NotFoundPage from "../../shared/NotFoundPage/NotFoundPage";
 
 function Seasons() {
   const navigate = useNavigate();
@@ -36,13 +37,16 @@ function Seasons() {
     page,
   } = useSeasons();
 
-  if (isLoading || isError) {
+  if (isLoading) {
     return <LoadingPage />;
+  }
+  if (isError) {
+    return <NotFoundPage />;
   }
 
   return (
     <>
-      {!isLoading && (
+      {!isLoading && !isError && (
         <>
           <div className="display_center display_center_col w-100">
             <div className="switch_view switch_view_between raceDetailsPageWidth">

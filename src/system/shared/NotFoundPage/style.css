@@ -1,0 +1,15 @@
+.no_data_found{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5%;
+}
+.no_data_found_icon{
+    width: 150px !important;
+    height: 150px  !important;
+}
+.no_data_found_text{
+    margin-top: 16px;
+    font-size: 36px;
+}
