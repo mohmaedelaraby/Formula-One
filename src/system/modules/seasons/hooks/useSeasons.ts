@@ -19,21 +19,21 @@ export const useSeasons = () => {
   }, [page, rowsPerPage, refetch]);
 
   // Handle page change event
-  
-  const handleChangePage = (
-    event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number
-  ) => {
-    setPage(newPage);
-  };
 
-  // Handle rows per page change event
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
+  const handleChangePage = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
+      setPage(newPage);
+    },
+    []
+  );
+
+  const handleChangeRowsPerPage = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setRowsPerPage(parseInt(event.target.value, 10));
+      setPage(0);
+    },
+    []
+  );
 
   return {
     view,
@@ -45,6 +45,6 @@ export const useSeasons = () => {
     isLoading,
     isError,
     rowsPerPage,
-    page
+    page,
   };
 };

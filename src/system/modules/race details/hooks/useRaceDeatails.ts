@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import useGetRaceResult from "./useGetRaceDetails";
-import {  Result } from "../../../types/Types";
+import { Result } from "../../../types/Types";
 
 interface Props {
   season: string;
@@ -17,12 +17,11 @@ export const useRaceDetails = (props: Props) => {
     useGetRaceResult(rowsPerPage, page * rowsPerPage, season, round);
 
   const [view, setView] = useState<"table" | "card">("table");
-  const [filteredResults, setFilteredResults] = useState<Result[]>([]); // Store filtered results for table view
+  const [filteredResults, setFilteredResults] = useState<Result[]>([]);
 
   useEffect(() => {
-    // Initialize filtered results to the full set of results when data is fetched
     if (RaceDetailsData?.[0]?.Results) {
-      setFilteredResults(RaceDetailsData[0]?.Results); // Set the full results initially
+      setFilteredResults(RaceDetailsData[0]?.Results);
     }
   }, [RaceDetailsData]);
 
@@ -49,29 +48,24 @@ export const useRaceDetails = (props: Props) => {
     []
   );
 
-  // Handle the driver search
   const driverSearch = useCallback(
     (name: string) => {
       if (!name) {
-        // If the search is cleared, reset to all results
         if (RaceDetailsData?.[0]?.Results) {
-          setFilteredResults(RaceDetailsData[0]?.Results); // Reset to full results
+          setFilteredResults(RaceDetailsData[0]?.Results);
         }
         return;
       }
 
-      // Filter the results by driver's name (given name or family name)
       const filtered = RaceDetailsData?.[0]?.Results.filter(
         (driver: Result) =>
           driver?.Driver?.givenName
             ?.toLowerCase()
             .includes(name.toLowerCase()) ||
-          driver?.Driver?.familyName
-            ?.toLowerCase()
-            .includes(name.toLowerCase())
+          driver?.Driver?.familyName?.toLowerCase().includes(name.toLowerCase())
       );
 
-      setFilteredResults(filtered || []); // Set filtered results for the table
+      setFilteredResults(filtered || []);
     },
     [RaceDetailsData]
   );

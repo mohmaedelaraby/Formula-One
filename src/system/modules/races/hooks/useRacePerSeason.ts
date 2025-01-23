@@ -9,7 +9,7 @@ export const useRacePerSeasons = (props: Props) => {
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(9);
   const { RaceData, totalCount, isLoading, isError, refetch } =
-  useGetRacePerSeasons(rowsPerPage, page * rowsPerPage, season);
+    useGetRacePerSeasons(rowsPerPage, page * rowsPerPage, season);
   const [view, setView] = useState<"table" | "card">("table"); // State to track the current view
 
   // Toggle between 'card' and 'table'
@@ -21,20 +21,20 @@ export const useRacePerSeasons = (props: Props) => {
   }, [page, rowsPerPage, refetch]);
 
   // Handle page change event
-  const handleChangePage = (
-    event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number
-  ) => {
-    setPage(newPage);
-  };
+  const handleChangePage = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
+      setPage(newPage);
+    },
+    []
+  );
 
-  // Handle rows per page change event
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
+  const handleChangeRowsPerPage = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setRowsPerPage(parseInt(event.target.value, 10));
+      setPage(0);
+    },
+    []
+  );
 
   return {
     view,
@@ -49,4 +49,3 @@ export const useRacePerSeasons = (props: Props) => {
     page,
   };
 };
-
