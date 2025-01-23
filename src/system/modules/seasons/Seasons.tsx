@@ -19,7 +19,7 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import { Season } from "../../types/Types";
 import LoadingPage from "../../shared/loadingState/LoadingPage";
 import { useNavigate } from "react-router-dom";
-import useSeasons from "./hooks/useSeasons";
+import {useSeasons} from "./hooks/useSeasons";
 
 function Seasons() {
   const navigate = useNavigate();

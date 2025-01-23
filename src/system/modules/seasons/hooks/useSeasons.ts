@@ -1,7 +1,7 @@
 import useGetSeasons from "./useGetSeasons";
 import React, { useCallback, useEffect, useState } from "react";
 
-const useSeasons = () => {
+export const useSeasons = () => {
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(9);
   const { SeasonData, totalCount, isLoading, isError, refetch } = useGetSeasons(
@@ -48,5 +48,3 @@ const useSeasons = () => {
     page
   };
 };
-
-export default useSeasons;
