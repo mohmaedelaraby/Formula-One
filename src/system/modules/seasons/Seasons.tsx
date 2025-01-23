@@ -1,4 +1,4 @@
-import React from 'react'; // Add this line
+import React from 'react';
 import "./Styles.css";
 import {
   Table,

@@ -5,7 +5,7 @@ interface Props {
   season: string;
   round: string;
 }
-const useRaceDetails = (props: Props) => {
+export const useRaceDetails = (props: Props) => {
   const { season, round } = props;
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(18);
@@ -51,4 +51,3 @@ const useRaceDetails = (props: Props) => {
   };
 };
 
-export default useRaceDetails;

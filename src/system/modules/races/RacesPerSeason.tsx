@@ -1,3 +1,4 @@
+import React from 'react';
 import "./Styles.css";
 import {
   Table,
@@ -13,7 +14,6 @@ import {
   CardContent,
   Button,
 } from "@mui/material";
-import React from 'react'; // Add this line
 import TableRowsIcon from "@mui/icons-material/TableRows";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import { Races } from "../../types/Types";

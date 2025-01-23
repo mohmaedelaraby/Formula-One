@@ -46,7 +46,7 @@ describe('Seasons Component', () => {
       toggleView: jest.fn(),
       totalCount: 0,
       view: 'table',
-      rowsPerPage: 10,
+      rowsPerPage: 9,
       page: 0,
     });
 
@@ -74,7 +74,7 @@ describe('Seasons Component', () => {
       toggleView: jest.fn(),
       totalCount: 2,
       view: 'table',
-      rowsPerPage: 10,
+      rowsPerPage: 9,
       page: 0,
     });
 
@@ -100,7 +100,7 @@ describe('Seasons Component', () => {
       toggleView: jest.fn(),
       totalCount: 1,
       view: 'table',
-      rowsPerPage: 10,
+      rowsPerPage: 9,
       page: 0,
     });
 

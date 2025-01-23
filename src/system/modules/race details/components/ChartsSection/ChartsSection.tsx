@@ -10,7 +10,6 @@ interface Props {
 }
 function ChartsSection(props: Props) {
   const { data } = props;
-  console.log(data);
   const {
     barChartLabsDataset,
     barChartLabsSeris,

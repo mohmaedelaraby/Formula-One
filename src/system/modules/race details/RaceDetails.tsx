@@ -1,3 +1,4 @@
+import React from 'react';
 import "./Styles.css";
 import {
   Table,
@@ -17,8 +18,8 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import { Result } from "../../types/Types";
 import LoadingPage from "../../shared/loadingState/LoadingPage";
 import { useParams } from "react-router-dom";
-import useRaceDetails from "./hooks/useRaceDeatails";
-import PostionCircle from "./components/Gold Circle/GoldCircle";
+import {useRaceDetails} from "./hooks/useRaceDeatails";
+import PostionCircle from "./components/Postion Circle/PostionCircle";
 import ChartsSection from "./components/ChartsSection/ChartsSection";
 
 function RaceDetails() {
@@ -39,7 +40,6 @@ function RaceDetails() {
   if (isLoading || isError) {
     return <LoadingPage />;
   }
-  console.log(RaceDetailsData)
 
   return (
     <>
