@@ -105,7 +105,7 @@ function RacesPerSeason() {
                       <TableRow
                         onClick={() => {
                           navigate(
-                            `/Formula-One/results/${race?.season}/${
+                            `/results/${race?.season}/${
                               race?.round
                             }?name=${encodeURIComponent(race.raceName)}`
                           );
@@ -185,7 +185,7 @@ function RacesPerSeason() {
                                   size="small"
                                   onClick={() => {
                                     navigate(
-                                      `/Formula-One/results/${race?.season}/${race?.round}`
+                                      ` /results/${race?.season}/${race?.round}`
                                     );
                                   }}
                                   style={{ marginTop: "10px" }}

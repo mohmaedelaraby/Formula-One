@@ -95,7 +95,7 @@ function Seasons() {
                           <TableCell
                             className="custom-table-click"
                             onClick={() => {
-                              navigate(`/Formula-One/races/${season.season}`);
+                              navigate(`/races/${season.season}`);
                             }}
                           >
                             {season.season}
@@ -136,7 +136,7 @@ function Seasons() {
                                     className="custom-card-btn"
                                     size="small"
                                     onClick={() => {
-                                      navigate(`/Formula-One/races/${season.season}`);
+                                      navigate(` /races/${season.season}`);
                                     }}
                                     style={{ marginTop: "10px" }}
                                   >

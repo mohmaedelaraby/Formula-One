@@ -13,16 +13,16 @@ export const RootRoutes = () => {
   useEffect(() => {
     if (window.location.pathname === "/") {
       // Redirect to "/seasons" if the path is "/"
-      navigate("/Formula-One/seasons");
+      navigate("/seasons");
     }
   }, [navigate]);
 
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>
-        <Route path="/Formula-One/seasons" index element={<Seasons />} />
-        <Route path="/Formula-One/races/:season" index element={<RacesPerSeason />} />
-        <Route path="/Formula-One/results/:season/:round" index element={<RaceDetails />} />
+        <Route path="/seasons" index element={<Seasons />} />
+        <Route path="/races/:season" index element={<RacesPerSeason />} />
+        <Route path="/results/:season/:round" index element={<RaceDetails />} />
         
         <Route path="*" element={<Page404 />} />
       </Route>

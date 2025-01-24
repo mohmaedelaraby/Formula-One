@@ -114,7 +114,7 @@ describe('Seasons Component', () => {
     await userEvent.click(seasonCell);
 
     await waitFor(() => {
-      expect(mockNavigate).toHaveBeenCalledWith('/Formula-One/races/2023');
+      expect(mockNavigate).toHaveBeenCalledWith('/races/2023');
     });
   });
 });
