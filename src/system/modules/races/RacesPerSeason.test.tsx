@@ -153,7 +153,7 @@ describe('RacesPerSeason Component', () => {
 
     await waitFor(() => {
       expect(mockNavigate).toHaveBeenCalledWith(
-        '/results/2023/1?name=Race%201'
+        '/Formula-One/results/2023/1?name=Race%201'
       );
     });
   });
