@@ -1,4 +1,3 @@
-import React from 'react';
 import "./Styles.css";
 import {
   Table,
@@ -106,7 +105,7 @@ function RacesPerSeason() {
                       <TableRow
                         onClick={() => {
                           navigate(
-                            `/results/${race?.season}/${
+                            `/Formula-One/results/${race?.season}/${
                               race?.round
                             }?name=${encodeURIComponent(race.raceName)}`
                           );
@@ -186,7 +185,7 @@ function RacesPerSeason() {
                                   size="small"
                                   onClick={() => {
                                     navigate(
-                                      `/results/${race?.season}/${race?.round}`
+                                      `/Formula-One/results/${race?.season}/${race?.round}`
                                     );
                                   }}
                                   style={{ marginTop: "10px" }}

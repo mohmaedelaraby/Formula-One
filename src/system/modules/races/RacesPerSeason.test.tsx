@@ -1,12 +1,9 @@
-import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import RacesPerSeason from './RacesPerSeason';
-import LoadingPage from '../../shared/loadingState/LoadingPage';
 import * as useRacePerSeasonsModule from './hooks/useRacePerSeason'; // Import the module
-import { Races } from '../../types/Types';
 
 // Mock the LoadingPage component
 jest.mock('../../shared/loadingState/LoadingPage', () => () => <div>Loading...</div>);

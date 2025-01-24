@@ -1,7 +1,7 @@
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
-import { RootRoutes } from "./system/routes/routes.tsx";
+import { RootRoutes } from "./system/routes/routes";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 const queryClient = new QueryClient();

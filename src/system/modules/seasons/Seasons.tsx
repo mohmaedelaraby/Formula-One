@@ -1,4 +1,4 @@
-import React from "react";
+ 
 import "./Styles.css";
 import {
   Table,
@@ -95,7 +95,7 @@ function Seasons() {
                           <TableCell
                             className="custom-table-click"
                             onClick={() => {
-                              navigate(`/races/${season.season}`);
+                              navigate(`/Formula-One/races/${season.season}`);
                             }}
                           >
                             {season.season}
@@ -136,7 +136,7 @@ function Seasons() {
                                     className="custom-card-btn"
                                     size="small"
                                     onClick={() => {
-                                      navigate(`/races/${season.season}`);
+                                      navigate(`/Formula-One/races/${season.season}`);
                                     }}
                                     style={{ marginTop: "10px" }}
                                   >
