@@ -6,15 +6,12 @@ import RaceDetails from './RaceDetails';
 import LoadingPage from '../../shared/loadingState/LoadingPage';
 import * as useRaceDetailsModule from './hooks/useRaceDeatails'; // Import the module
 
-// Mock the LoadingPage component
 jest.mock('../../shared/loadingState/LoadingPage', () => () => <div>Loading...</div>);
 
-// Mock the useRaceDetails hook
 jest.mock('./hooks/useRaceDeatails', () => ({
   useRaceDetails: jest.fn(),
 }));
 
-// Mock the ChartsSection component
 jest.mock('./components/ChartsSection/ChartsSection', () => () => <div>ChartsSection</div>);
 
 describe('RaceDetails Component', () => {
