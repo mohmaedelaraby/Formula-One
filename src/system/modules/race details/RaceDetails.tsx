@@ -105,7 +105,7 @@ function RaceDetails() {
                 )}
                 <TableBody>
                   {view === "table" &&
-                    filteredResults.map((result: Result, index: number) => (
+                    filteredResults?.map((result: Result, index: number) => (
                       <TableRow hover key={index}>
                         <TableCell className="custom-table-click">
                           {result.Driver.givenName} {result.Driver.familyName}
