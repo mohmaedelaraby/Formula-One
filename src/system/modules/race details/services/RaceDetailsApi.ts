@@ -8,7 +8,7 @@ export const getRaceResult = async (
   round: string
 ): Promise<RaceResultsResponse> => {
   const res = await axios.get(
-    `http://ergast.com/api/f1/${season}/${round}/results.json`,
+    `https://ergast.com/api/f1/${season}/${round}/results.json`,
     {
       params: { limit, offset }, // Add query parameters for pagination
     }
